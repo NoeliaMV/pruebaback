@@ -1,0 +1,32 @@
+
+.about{
+    padding: 2rem;
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(30rem, 1fr));
+    gap:1rem
+}
+
+.img-container{
+margin: auto;
+}
+
+.about-container p{
+    color: rgb(54, 53, 54);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.element{
+    margin-bottom: 2rem;
+    text-align:center;
+}
+
+
+.titulo{
+    color:chocolate;
+
+}
+

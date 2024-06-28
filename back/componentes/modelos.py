@@ -26,3 +26,11 @@ class Valoracion(Tabla):
 
     def __init__(self, *args, de_bbdd=False):
         super().crear(args, de_bbdd)     
+
+class Imagen(Tabla):
+    tabla = 'imagen' 
+    campos = ('id', 'platillo_id', 'url_img', 'texto_alt')
+    conexion = con
+
+    def __init__(self, *args, de_bbdd=False):
+       super().crear(args, de_bbdd)
