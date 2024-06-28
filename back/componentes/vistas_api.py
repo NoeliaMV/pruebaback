@@ -16,6 +16,20 @@ def api_platillo():
     platillos = Platillo.obtener()
     datos = [platillo.__dict__ for platillo in platillos]
 
+    
+    for dato in datos:
+        imagenes = Imagen.obtener('platillo_id', dato["id"])
+        dato["imagenes"] = []
+    
+        if type(imagenes) == list:
+            for img in imagenes:
+                i = img.__dict__
+                dato["imagenes"].append(i)
+
+        else:
+            dato["imagenes"].append(imagenes.__dict__)
+
+
     return jsonify(datos)
 
 @app.route("/api-preuba_back/cliente", methods=['GET'])
@@ -26,16 +40,7 @@ def api_cliente():
     for dato in datos:
         dato["platillo"] = Platillo.obtener('id', dato['platillo_id']).__dict__["platillo"]
         dato["valoracion"] = Valoracion.obtener('id', dato['valoracion_id']).__dict__["valoracion"]
-        imagenes = Imagen.obtener('platillo_id', dato["id"])
-        dato["imagenes"] = []
-
-        if type(imagenes) == list:
-            for img in imagenes:
-                i = img.__dict__
-                dato["imagenes"].append(i)
-
-        else:
-            dato["imagens"].append(imagenes.__dict__)
+        
 
         del dato["platillo_id"]
         del dato["valoracion_id"]
@@ -54,8 +59,8 @@ def api_valoracion():
 
     return jsonify(datos) 
    
-@app.route("/api-prueba_back/imagen", methods=['GET'])
-def api_imagen():
+#@app.route("/api-prueba_back/imagen", methods=['GET'])
+#def api_imagen():
     imagenes = Imagen.obtener()
     datos = [imagen.__dict__ for imagen in imagenes]
 

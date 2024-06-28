@@ -7,7 +7,7 @@ config_dev = {
     'host': '127.0.0.1',
     'database': 'prueba_back'
 }
-
+#requestes mysql-connector-python
 config_prod = {
     # configuración en producción (despliegue)
     "user": '',
