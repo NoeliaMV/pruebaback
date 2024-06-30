@@ -1,7 +1,7 @@
 # Clases que corresponden a entidades en la BBDD
 from base_db.config_db import conexion as con
 from base_db.dml import Tabla
-from auxiliares.cifrado import encriptar
+#from auxiliares.cifrado import encriptar
 
 class Platillo(Tabla):  
     tabla = 'platillo'

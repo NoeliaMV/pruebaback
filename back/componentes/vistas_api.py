@@ -71,3 +71,61 @@ def api_valoracion():
 
     return jsonify(datos)   
   
+  #POST
+@app.route("/api-prueba_back/cliente", methods=['POST'])
+def crear_cliente():
+
+    if request.method == 'POST':
+        datos = request.json["datos"]
+        cliente_nuevo = Cliente(
+            datos['nombre'],
+            datos['apellido'],
+            datos['correo'],
+            datos['platillo_id'],
+            datos['valoracion_id'],
+        )
+
+        respuesta = {}
+        rta_bbd = cliente_nuevo.guardar_db()
+
+        if not rta_bbd:
+            respuesta['mensaje'] = 'No se pudo enviar los datos!'
+            respuesta['status'] = 409
+        else:
+            cliente_nuevo.guardar_db()
+            respuesta['mensaje'] = 'Datos enviados con exito!'
+            respuesta['status'] = 200
+
+    else:
+        respuesta['mensaje'] = 'No se recibieron datos'
+        respuesta['status'] = 204
+
+    return jsonify(respuesta)
+
+@app.route("/api-prueba_back/valoracion", methods=['POST'])
+def crear_valoracion():
+
+    if request.method == 'POST':
+        datos = request.json["datos"]
+        nva_valoracion = Valoracion(
+            datos['platillo_id'],
+            datos['comentario'],
+            datos['valoracion'],
+        )
+
+        respuesta = {}
+        rta_bbd = nva_valoracion.guardar_db()
+
+        if not rta_bbd:
+            respuesta['mensaje'] = 'No se pudo enviar los datos!'
+            respuesta['status'] = 409
+        else:
+            nva_valoracion.guardar_db()
+            respuesta['mensaje'] = 'Datos enviados con exito!'
+            respuesta['status'] = 200
+
+    else:
+        respuesta['mensaje'] = 'No se recibieron datos'
+        respuesta['status'] = 204
+
+    return jsonify(respuesta)

@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
-cors = CORS(app, resources={r"/api-edtech/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api-prueba_back/*": {"origins": "*"}})
 
 
 # Importar las vistas
